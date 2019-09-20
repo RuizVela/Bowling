@@ -1,25 +1,20 @@
 <?php
 namespace App\models;
-class Ronda 
+use App\models\Jugador;
+
+class Ronda extends Jugador
 {
-    public $valorPleno=10;
-    private $maximoPlenos=3;
-    private $restaurarPlenos=0;
-
     public $tirada;
-    public $puntosTurno=0;
-    public $puntosTotal=0;
-    public $plenosSeguidos=0;
+    public $puntosRonda=0;
+    public $valorPleno=10;
 
-    function restaurarPlenos()
-    {
-        $this->plenosSeguidos=$this->restaurarPlenos;
-    }
+ 
     function tirada()
     {
-        $this->puntosTotal=$this->puntosTotal+$this->tirada;
-        $this->puntosTurno=$this->tirada;
-        echo $this->puntosTurno;
+              $this->puntosRonda=$this->puntosRonda+$this->tirada;
+        echo "<br>Has Tirado $this->tirada Bolos.";
+        echo "<br>Tienes $this->puntosRonda Puntos";
+
     }
 
 }
