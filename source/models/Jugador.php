@@ -14,17 +14,12 @@ class Jugador extends Partida
 
     function crearRonda()
     {
-        $Ronda = new Ronda();
-        $Ronda->tirada=rand(0, 10);
-        $Ronda->tirada();
-        $guardado=$Ronda->valorPleno-$Ronda->tirada;
-        if ($Ronda->tirada<$Ronda->valorPleno) {
-            $Ronda->tirada=rand(0, $guardado);
-            echo "<br>";
-            $Ronda->tirada();
-        }
-        $this->puntosPartida=$this->puntosPartida+$Ronda->puntosRonda;
-        echo "<br> Esta ronda has conseguido $Ronda->puntosRonda";
-        echo "<br>tu TOTAL es $this->puntosPartida";
+        $ronda = new Ronda;
+        $ronda->tiradaUno();
+        $ronda->tiradaDos();
+        $this->puntosPartida=$this->puntosPartida+$ronda->puntosRonda;
+        echo "<br>Esta ronda has conseguido $ronda->puntosRonda";
+        echo "<br>Tu TOTAL es $this->puntosPartida";
+        
     }
 }

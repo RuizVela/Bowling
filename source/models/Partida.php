@@ -9,9 +9,7 @@ class Partida
     public $restaurarPlenos=0;
     function crearPlayer(){
         $player = new Jugador;
-        $rondaUno = $player->crearRonda();
-        echo "<br>--<br>--";
-        $rondaDos = $player->crearRonda();
-
+        $player->crearRonda();
+        $player->crearRonda();
     }
 }
