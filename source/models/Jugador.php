@@ -24,6 +24,7 @@ class Jugador extends Partida
             $Ronda->tirada();
         }
         $this->puntosPartida=$this->puntosPartida+$Ronda->puntosRonda;
+        echo "<br> Esta ronda has conseguido $Ronda->puntosRonda";
         echo "<br>tu TOTAL es $this->puntosPartida";
     }
 }

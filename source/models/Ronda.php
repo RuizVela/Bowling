@@ -13,8 +13,6 @@ class Ronda extends Jugador
     {
               $this->puntosRonda=$this->puntosRonda+$this->tirada;
         echo "<br>Has Tirado $this->tirada Bolos.";
-        echo "<br>Tienes $this->puntosRonda Puntos";
-
     }
 
 }
