@@ -7,27 +7,27 @@ class Ronda extends Jugador
     public $tirada;
     public $puntosRonda=0;
     public $valorPleno=10;
-    public $bolosRestantes;
-
+    public $bolosRestantes=10;
+    private $restablecerTirada=0;
 
  
-
+    function guardarPuntos(){
+        $this->puntosRonda=$this->puntosRonda+$this->tirada;
+    }
     function tiradaUno()
     {
+        $this->tirada=$this->restablecerTirada;
         $this->tirada=rand(0, 10);
-        $this->puntosRonda=$this->tirada;
+        $this->guardarPuntos();
         echo "<br>Has Tirado $this->tirada Bolos.";
-        $this->bolosRestantes=$this->valorPleno-$this->tirada;
+        $this->bolosRestantes=$this->bolosRestantes-$this->tirada;
+        
     }
     function tiradaDos()
     {
-        if ($this->tirada<$this->valorPleno) {
             $this->tirada=rand(0, $this->bolosRestantes);
-            $this->puntosRonda=$this->puntosRonda+$this->tirada;
+            $this->guardarPuntos();
             echo "<br>Has Tirado $this->tirada Bolos.";
-            return;
-        }
-        echo "<br>Ya has tirado todos los bolos.";
     }
 
 }

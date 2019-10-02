@@ -7,9 +7,13 @@ class Partida
 { 
     public $maximoPlenos=3;
     public $restaurarPlenos=0;
+    private $numeroRondas=10;
+
     function crearPlayer(){
         $player = new Jugador;
-        $player->crearRonda();
-        $player->crearRonda();
+        for ($i = 1; $i <= $this->numeroRondas; $i++) {
+            $ronda = new Ronda;
+            $player->crearRonda($ronda);
+        }
     }
 }
