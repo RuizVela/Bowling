@@ -13,11 +13,9 @@ class Jugador extends Partida
     {
         $this->plenosSeguidos=$this->restaurarPlenos;
     }
-
     function crearRonda($ronda)
     {
-        
-        $ronda->tiradaUno();
+     echo $ronda->tiradaUno();
         if ($ronda->tirada==$ronda->valorPleno) {
             echo "<br>/";
             $this->puntosPartida=$this->puntosPartida+$ronda->puntosRonda;
@@ -25,13 +23,12 @@ class Jugador extends Partida
             if ($this->ultimoPleno==TRUE){
                 $this->puntosPartida=$this->puntosPartida+$ronda->puntosRonda;
             }
-
             echo "<br>Esta ronda has conseguido $ronda->puntosRonda";
             echo "<br>Tu TOTAL es $this->puntosPartida <br>";
             $this->ultimoPleno=TRUE;
             return;
            }
-        $ronda->tiradaDos();
+       echo $ronda->tiradaDos();
         $this->puntosPartida=$this->puntosPartida+$ronda->puntosRonda;
         if ($this->ultimoPleno==TRUE){
             $this->puntosPartida=$this->puntosPartida+$ronda->puntosRonda;
