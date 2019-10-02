@@ -15,7 +15,7 @@ class JugadorTest extends TestCase
         $expected = 0;
         $this->assertEquals($response,$expected);
     }
-    public function testGuardarPuntosComoNumeroEntero()
+    function testGuardarPuntosComoNumeroEntero()
     {
         $ronda = new Ronda;
         $guardar = new Jugador;

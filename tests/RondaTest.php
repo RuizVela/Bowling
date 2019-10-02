@@ -7,10 +7,18 @@ use PHPUnit\Framework\TestCase;
 class RondaTest extends TestCase {
 
 
-    function testIfTirarMenorQue10()
+    function testIfTiradaUnoMenorQue10()
     {
             $tirada = new Ronda;
             $tirada->tiradaUno();
+            $response = $tirada->tirada;
+            $expected = 10;
+            $this->assertLessThanOrEqual($expected, $response);
+    }
+    function testIfTiradaDosMenorQue10()
+    {
+            $tirada = new Ronda;
+            $tirada->tiradaDos();
             $response = $tirada->tirada;
             $expected = 10;
             $this->assertLessThanOrEqual($expected, $response);
