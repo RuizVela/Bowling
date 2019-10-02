@@ -1,13 +1,11 @@
 <?php
 namespace App\models;
-use App\models\Jugador;
 
-class Ronda extends Jugador
+class Ronda
 {
     public $tirada;
     public $puntosRonda=0;
-    public $valorPleno=10;
-    public $bolosRestantes=10;
+    private $bolosRestantes=10;
  
     private function guardarPuntos($tirada){
         $this->puntosRonda=$this->puntosRonda+$tirada;

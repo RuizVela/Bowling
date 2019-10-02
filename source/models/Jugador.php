@@ -1,13 +1,13 @@
 <?php
 namespace App\models;
-use App\models\Ronda;
-use App\models\Partida;
-class Jugador extends Partida
+class Jugador
 {
     public $puntosPartida=0;
     public $plenosSeguidos=0;
+    private $restaurarPlenos=0;
     public $rondas=0;
     public $ultimoPleno=FALSE;
+    private $valorPleno=10;
     
     function restaurarPlenos()
     {
@@ -20,7 +20,7 @@ class Jugador extends Partida
     function crearRonda($ronda)
     {
      echo $ronda->tiradaUno();
-        if ($ronda->tirada==$ronda->valorPleno) {
+        if ($ronda->tirada==$this->valorPleno) {
             $this->guardarPuntos($ronda->puntosRonda);
             if ($this->ultimoPleno==TRUE){
                 $this->guardarPuntos($ronda->puntosRonda);

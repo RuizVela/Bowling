@@ -2,13 +2,12 @@
 
 namespace App\tests;
 use App\models\Ronda;
-use App\models\Jugador;
 use PHPUnit\Framework\TestCase;
 
 class RondaTest extends TestCase {
 
 
-    public function testIfTirarMenorQue10()
+    function testIfTirarMenorQue10()
     {
             $tirada = new Ronda;
             $tirada->tiradaUno();
@@ -16,7 +15,7 @@ class RondaTest extends TestCase {
             $expected = 10;
             $this->assertLessThanOrEqual($expected, $response);
     }
-    public function testGuardarPuntosComoNumeroEntero()
+    function testGuardarPuntosComoNumeroEntero()
     {
         $guardar = new Ronda;
         $guardar->tiradaUno();
