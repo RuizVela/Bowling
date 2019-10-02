@@ -13,7 +13,7 @@ class Partida
         $player = new Jugador;
         for ($i = 1; $i <= $this->numeroRondas; $i++) {
             $ronda = new Ronda;
-            $player->crearRonda($ronda);
+            echo $player->crearRonda($ronda);
         }
     }
 }
