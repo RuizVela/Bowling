@@ -16,12 +16,12 @@ class RondaTest extends TestCase {
             $expected = 10;
             $this->assertLessThanOrEqual($expected, $response);
     }
-    public function testGuardarPuntosInterger()
+    public function testGuardarPuntosComoNumeroEntero()
     {
         $guardar = new Ronda;
-        $guardar->guardarPuntos(1);
+        $guardar->tiradaUno();
         $response = $guardar->puntosRonda;
-        $expected = 1;
+        $expected = $guardar->tirada;
         $this->assertEquals($expected, $response);
         $this->assertIsInt($response);
     }
