@@ -6,13 +6,19 @@ class Ronda
     public $tirada;
     public $puntosRonda=0;
     private $bolosRestantes=10;
+    public $ultimoPleno=FALSE;
+    public $ultimoSemipleno=FALSE;
  
     private function guardarPuntos($tirada){
         $this->puntosRonda=$this->puntosRonda+$tirada;
     }
+    function tirarBolos()
+    {
+        $this->tirada=10;
+    }
     function tiradaUno()
     {
-        $this->tirada=rand(0, 10);
+        $this->tirarBolos();
         $this->guardarPuntos($this->tirada);
         $this->bolosRestantes=$this->bolosRestantes-$this->tirada;
         return "<br>Has Tirado $this->tirada Bolos.";
@@ -20,7 +26,7 @@ class Ronda
     }
     function tiradaDos()
     {
-            $this->tirada=rand(0, $this->bolosRestantes);
+            $this->tirarBolos();
             $this->guardarPuntos($this->tirada);
             return "<br>Has Tirado $this->tirada Bolos.";
     }

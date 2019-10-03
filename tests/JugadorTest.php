@@ -19,7 +19,7 @@ class JugadorTest extends TestCase
     {
         $ronda = new Ronda;
         $guardar = new Jugador;
-        $guardar->crearRonda($ronda);
+        $guardar->nuevaRonda($ronda);
         $response = $guardar->puntosPartida;
         $expected = $ronda->puntosRonda;
         $this->assertEquals($expected, $response);
