@@ -6,10 +6,8 @@ class Jugador extends Ronda
     public $puntosPartida=0;
     public $plenosSeguidos=0;
     private $restaurarPlenos=0;
-    public $rondaActual=0;
+    public $rondaActual=1;
     public $rondasGuardadas=[];
-    public $ultimoPleno=FALSE;
-    public $ultimoSemipleno=FALSE;
     private $valorPleno=10;
     private $maximoDePlenos=3;
 
@@ -17,13 +15,8 @@ class Jugador extends Ronda
     {
         $rondaInicial = new Ronda();
         array_push($this->rondasGuardadas, $rondaInicial);
+        array_push($this->rondasGuardadas, $rondaInicial);
     }
-
-    function getArray()
-    {
-        return $this->rondasGuardadas;
-    }
-    
     function restaurarPlenos()
     {
         $this->plenosSeguidos=$this->restaurarPlenos;
@@ -39,14 +32,22 @@ class Jugador extends Ronda
         if ($ronda->tirada==$this->valorPleno) {
             $this->guardarPuntos($ronda->puntosRonda);
             $this->rondaActual ++;
-            if ($this->rondasGuardadas[$this->rondaActual-1]->ultimoPleno==TRUE){
+            if ($this->rondasGuardadas[$this->rondaActual-2]->ultimoPleno==TRUE)
+            {
+                $this->guardarPuntos($ronda->puntosRonda);
+            }
+            if ($this->rondasGuardadas[$this->rondaActual-1]->ultimoSemipleno==TRUE)
+            {
+                $this->guardarPuntos($ronda->puntosRonda);
+            }
+            if ($this->rondasGuardadas[$this->rondaActual-1]->ultimoPleno==TRUE)
+            {
                 $this->guardarPuntos($ronda->puntosRonda);
                 if ($this->plenosSeguidos==$this->maximoDePlenos){
                     $this->restaurarPlenos();
                     $ronda->ultimoPleno=FALSE;
                     $ronda->ultimoSemipleno=TRUE;
                     array_push($this->rondasGuardadas, $ronda);
-                    $this->getArray()[0];
                     return "<br>Ronda $this->rondaActual Esta ronda has conseguido $ronda->puntosRonda 
                     <br>Tu TOTAL es $this->puntosPartida <br> <br>";
                 }
