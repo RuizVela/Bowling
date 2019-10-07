@@ -14,7 +14,7 @@ class Ronda
     }
     function tirarBolos()
     {
-        $this->tirada=10;
+        $this->tirada=5;
     }
     function tiradaUno()
     {
@@ -29,6 +29,6 @@ class Ronda
             $this->tirarBolos();
             $this->guardarPuntos($this->tirada);
             return "<br>Has Tirado $this->tirada Bolos.";
+        }
     }
 
-}
