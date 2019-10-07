@@ -10,6 +10,7 @@ class Jugador extends Ronda
     public $rondasGuardadas=[];
     private $valorPleno=10;
     private $maximoDePlenos=3;
+    private $ultimaRonda=10;
 
     public function __construct()
     {
@@ -39,10 +40,17 @@ class Jugador extends Ronda
         {
             $this->guardarPuntos($puntosRonda);
         }
-        // if ($this->rondasGuardadas[$this->rondaActual-2]->ultimoPleno==TRUE)
-        // {
-        //     $this->guardarPuntos($puntosRonda);
-        // }
+        if ($this->rondasGuardadas[$this->rondaActual-2]->ultimoPleno==TRUE)
+        {
+            $this->guardarPuntos($puntosRonda);
+        }
+    }
+    function sumarSPlenos($puntosRonda)
+    {
+        if ($this->rondasGuardadas[$this->rondaActual-1]->ultimoPleno==TRUE)
+        {
+            $this->guardarPuntos($puntosRonda);
+        }
     }
     function comprobarPlenosSeguidos($ronda)
     {
@@ -75,9 +83,9 @@ class Jugador extends Ronda
     }
     function primerTiro($ronda)
     {
-        echo $this->numerarRonda();
+        
         echo $ronda->tiradaUno();
-         $this->sumarPlenos($ronda->puntosRonda);
+        $this->sumarPlenos($ronda->tirada);
         echo $this->tiradaPleno($ronda);
     }
     function segundoTiro($ronda)
@@ -85,7 +93,7 @@ class Jugador extends Ronda
         if ($ronda->tirada<$this->valorPleno)
         {
            echo $ronda->tiradaDos();
-           $this->sumarPlenos($ronda->puntosRonda);
+           $this->sumarSPlenos($ronda->tirada);
            $this->guardarPuntos($ronda->puntosRonda);
            $this->restaurarPlenos();
            $this->tiradaSemipleno($ronda);
@@ -96,6 +104,20 @@ class Jugador extends Ronda
     }
     function nuevaRonda($ronda) 
     {
+        echo $this->numerarRonda();
+        if ($this->rondaActual==$this->ultimaRonda)
+        {
+            $this->primerTiro($ronda);
+                if ($ronda->tirada==$this->valorPleno)
+                {
+                    $this->primerTiro($ronda);
+                    if ($ronda->tirada==$this->valorPleno)
+                    {
+                        $this->primerTiro($ronda);
+                    }
+                }
+return;
+        }
         $this->primerTiro($ronda);
         echo $this->segundoTiro($ronda);   
     }

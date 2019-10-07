@@ -8,16 +8,18 @@ class Ronda
     private $bolosRestantes=10;
     public $ultimoPleno=FALSE;
     public $ultimoSemipleno=FALSE;
- 
+    public $bolosTotales=10;
+
     private function guardarPuntos($tirada){
         $this->puntosRonda=$this->puntosRonda+$tirada;
     }
     function tirarBolos()
     {
-        $this->tirada=5;
+        $this->tirada=10;
     }
     function tiradaUno()
     {
+        $this->bolosRestantes=$this->bolosTotales;
         $this->tirarBolos();
         $this->guardarPuntos($this->tirada);
         $this->bolosRestantes=$this->bolosRestantes-$this->tirada;
