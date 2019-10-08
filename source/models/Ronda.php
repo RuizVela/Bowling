@@ -15,7 +15,7 @@ class Ronda
     }
     function tirarBolos()
     {
-        $this->tirada=10;
+        $this->tirada=rand(0,$this->bolosRestantes);
     }
     function tiradaUno()
     {

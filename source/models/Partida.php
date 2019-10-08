@@ -10,7 +10,8 @@ class Partida
     private $numeroRondas=10;
 
     function crearPlayer(){
-        $player = new Jugador;
+        $rondaInicial = new Ronda();
+        $player = new Jugador($rondaInicial);
         for ($i = 1; $i <= $this->numeroRondas; $i++) {
             $ronda = new Ronda;
             echo $player->nuevaRonda($ronda);

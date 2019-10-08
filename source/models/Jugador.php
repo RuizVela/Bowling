@@ -12,10 +12,12 @@ class Jugador extends Ronda
     private $maximoDePlenos=3;
     private $ultimaRonda=10;
 
-    public function __construct()
+
+    public function __construct($rondaInicial)
     {
-        $rondaInicial = new Ronda();
-        array_push($this->rondasGuardadas, $rondaInicial);
+        
+        $this->rondasGuardadas = [ $rondaInicial,$rondaInicial];
+        $this->rondaActual = sizeof([ $rondaInicial,$rondaInicial])-1;
     }
     function numerarRonda()
     {
@@ -24,7 +26,7 @@ class Jugador extends Ronda
     }
     function restaurarPlenos()
     {
-        $this->plenosSeguidos=$this->restaurarPlenos;
+       // $this->plenosSeguidos=$this->restaurarPlenos;
     }
     private function guardarPuntos($puntosRonda)
     {
@@ -56,9 +58,9 @@ class Jugador extends Ronda
     {
         if ($this->plenosSeguidos>$this->maximoDePlenos)
         {
-            $this->restaurarPlenos();
-            $ronda->ultimoPleno=FALSE;
-            $ronda->ultimoSemipleno=TRUE;
+            //$this->restaurarPlenos();
+            // $ronda->ultimoPleno=FALSE;
+            // $ronda->ultimoSemipleno=TRUE;
         }
     }
     function tiradaPleno($ronda)
@@ -76,10 +78,19 @@ class Jugador extends Ronda
     }
     function tiradaSemipleno($ronda)
     {
-        if ($ronda->puntosRonda==$this->valorPleno)
+        if ($ronda->puntosRonda!=$this->valorPleno)
         {
-            $ronda->ultimoSemipleno=TRUE;
+            return;
         }
+
+        $ronda->ultimoSemipleno=TRUE;
+    }
+    function tiradaExtra($ronda)
+    {
+        echo $ronda->tiradaUno();
+        $this->sumarPlenos($ronda->tirada);
+        return "<br>Ronda $this->rondaActual Esta ronda has conseguido $ronda->puntosRonda 
+            <br>Tu TOTAL es $this->puntosPartida <br> <br>";
     }
     function primerTiro($ronda)
     {
@@ -95,7 +106,7 @@ class Jugador extends Ronda
            echo $ronda->tiradaDos();
            $this->sumarSPlenos($ronda->tirada);
            $this->guardarPuntos($ronda->puntosRonda);
-           $this->restaurarPlenos();
+           //$this->restaurarPlenos();
            $this->tiradaSemipleno($ronda);
            array_push($this->rondasGuardadas, $ronda);
            return "<br> Esta ronda has conseguido $ronda->puntosRonda 
@@ -105,21 +116,16 @@ class Jugador extends Ronda
     function nuevaRonda($ronda) 
     {
         echo $this->numerarRonda();
+        $this->primerTiro($ronda);
+        echo $this->segundoTiro($ronda);
+        
         if ($this->rondaActual==$this->ultimaRonda)
         {
-            $this->primerTiro($ronda);
-                if ($ronda->tirada==$this->valorPleno)
-                {
-                    $this->primerTiro($ronda);
-                    if ($ronda->tirada==$this->valorPleno)
-                    {
-                        $this->primerTiro($ronda);
-                    }
-                }
-return;
+            if ($ronda->tirada==$this->valorPleno)
+            {
+                echo $this->tiradaExtra($ronda);
+            } 
         }
-        $this->primerTiro($ronda);
-        echo $this->segundoTiro($ronda);   
     }
 }
 
